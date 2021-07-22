@@ -1,12 +1,12 @@
 import React from 'react';
 
 export default function ImagePart(props) {
-  const { category, filename } = props;
+  const { folder, filename } = props;
   return (
     <img
       className="pos-abs"
-      src={`/alpaca/${category}/${filename}.png`}
-      alt={category}
+      src={`/alpaca/${folder}/${filename}.png`}
+      alt={filename}
     />
   );
 }

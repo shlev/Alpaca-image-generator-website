@@ -1,19 +1,13 @@
 import React from 'react';
 import ImagePart from './ImagePart';
 
-function Preview() {
+function Preview(props) {
+  const { selectedOptions } = props;
   return (
     <div className="preview-container">
-      <ImagePart category="backgrounds" filename="blue60" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
-      <ImagePart category="neck" filename="default" />
+      {Object.keys(selectedOptions).map((option) => (
+        <ImagePart key={option} folder={option} filename={selectedOptions[option]} />
+      ))}
     </div>
   );
 }
