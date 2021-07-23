@@ -7,6 +7,6 @@ export default function ButtonOption(props) {
     updateOption(caption);
   }
   return (
-    <button onClick={handleClick} className={`btn-md ${isActive ? 'btn-active' : ''}`} type="button">{caption}</button>
+    <button onClick={handleClick} className={`btn btn-md ${isActive ? 'btn-active' : ''}`} type="button">{caption}</button>
   );
 }

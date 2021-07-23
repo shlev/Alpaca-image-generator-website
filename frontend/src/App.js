@@ -37,12 +37,19 @@ function App() {
     updateSelectedOptions(newOptionIndex);
   }
   return (
-    <div>
+    <div className="container">
       <Header />
-      <Preview selectedOptions={selectedOptions} />
+      <div className="content">
+        <Preview selectedOptions={selectedOptions} />
+        <div className="selection">
+          <ButtonsList updateSelectedListItem={updateCategory} categories={categories} selected={selectedCategoryIndex} headerText="Accessorize your Alpaca" />
+          <ButtonsList updateSelectedListItem={updateOption} categories={alpaca[categories[selectedCategoryIndex]]} selected={selectedOptionIndex} headerText={categories[selectedCategoryIndex]} />
+        </div>
+
+      </div>
+
       <Download />
-      <ButtonsList updateSelectedListItem={updateCategory} categories={categories} selected={selectedCategoryIndex} headerText="Accessorize your Alpaca" />
-      <ButtonsList updateSelectedListItem={updateOption} categories={alpaca[categories[selectedCategoryIndex]]} selected={selectedOptionIndex} headerText={categories[selectedCategoryIndex]} />
+
     </div>
   );
 }

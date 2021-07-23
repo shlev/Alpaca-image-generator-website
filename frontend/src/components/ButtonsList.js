@@ -14,7 +14,7 @@ export default function ButtonsList(props) {
     updateSelectedListItem(category);
   }
   return (
-    <div>
+    <div className="buttons-container">
       <h1>{headerText}</h1>
       <div className="btn-container">
         {categories.map((cat) => (
