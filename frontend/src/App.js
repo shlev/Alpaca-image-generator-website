@@ -36,7 +36,13 @@ function App() {
   }
 
   function selectRandom() {
-    alert('select random');
+    initSelectedOptions = {};
+    categories.forEach(category => {
+      const categoryOptions = alpaca[category];
+      const randomOptionIndex = Math.floor(Math.random() * categoryOptions.length);
+      initSelectedOptions = { ...initSelectedOptions, [category]: alpaca[category][randomOptionIndex] };
+    });
+    setSelectedOptions(initSelectedOptions);
   }
   return (
     <div className="container">
