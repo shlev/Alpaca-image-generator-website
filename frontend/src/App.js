@@ -9,7 +9,7 @@ import ButtonsList from './components/ButtonsList';
 import alpaca from './alpaca';
 
 function App() {
-  const categories = (Object.keys(alpaca));
+  const categories = ['backgrounds', 'ears', 'neck', 'hair', 'nose', 'mouth', 'eyes', 'accessories', 'leg'];
   let initSelectedOptions = {};
   categories.forEach(category => {
     initSelectedOptions = { ...initSelectedOptions, [category]: alpaca[category][0] };
@@ -49,7 +49,7 @@ function App() {
       <Header />
       <div className="content">
         <div>
-          <Preview selectedOptions={selectedOptions} />
+          <Preview selectedOptions={selectedOptions} categories={categories} />
           <div className="command-buttons">
             <ActionButton performAction={selectRandom} caption="random" iconClass="fas fa-random" />
             <ActionButton performAction={downloadImage} caption="download" iconClass="far fa-save" />
