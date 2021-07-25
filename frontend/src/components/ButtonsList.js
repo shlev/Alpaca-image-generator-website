@@ -8,7 +8,7 @@ export default function ButtonsList(props) {
     headerText,
     updateSelectedListItem,
   } = props;
-  const selectedCategory = categories[selected];
+  const selectedCategory = selected;
 
   function updateList(category) {
     updateSelectedListItem(category);

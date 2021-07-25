@@ -15,27 +15,20 @@ function App() {
     initSelectedOptions = { ...initSelectedOptions, [category]: alpaca[category][0] };
   });
 
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [selectedOptions, setSelectedOptions] = useState(initSelectedOptions);
 
-  function updateSelectedOptions(newOptionIndex) {
-    const selectedCategory = categories[selectedCategoryIndex];
-    const selectedOption = alpaca[selectedCategory][newOptionIndex];
-    const updated = { ...selectedOptions, [selectedCategory]: selectedOption };
+  function updateSelectedOptions(updatedOption) {
+    const updated = { ...selectedOptions, [selectedCategory]: updatedOption };
     setSelectedOptions(updated);
   }
 
   function updateCategory(newCategory) {
-    const newIndex = categories.indexOf(newCategory);
-    setSelectedCategoryIndex(newIndex);
+    setSelectedCategory(newCategory);
   }
 
-  function updateOption(newOption) {
-    const options = alpaca[categories[selectedCategoryIndex]];
-    const newOptionIndex = options.indexOf(newOption); //
-    setSelectedOptionIndex(newOptionIndex);
-    updateSelectedOptions(newOptionIndex);
+  function updateOption(updatedOption) {
+    updateSelectedOptions(updatedOption);
   }
 
   function downloadImage() {
@@ -43,14 +36,7 @@ function App() {
   }
 
   function selectRandom() {
-    const currentSelectedCategoryIndex = selectedCategoryIndex;
-    categories.forEach((category, index) => {
-      setSelectedCategoryIndex(index);
-      const categoryOptionCount = alpaca[category].length;
-      const rndOption = Math.floor(Math.random() * categoryOptionCount);
-      updateOption(alpaca[category][rndOption]);
-    });
-    setSelectedCategoryIndex(currentSelectedCategoryIndex);
+    alert('select random');
   }
   return (
     <div className="container">
@@ -65,8 +51,8 @@ function App() {
         </div>
 
         <div className="selection">
-          <ButtonsList updateSelectedListItem={updateCategory} categories={categories} selected={selectedCategoryIndex} headerText="Accessorize your Alpaca" />
-          <ButtonsList updateSelectedListItem={updateOption} categories={alpaca[categories[selectedCategoryIndex]]} selected={selectedOptionIndex} headerText={categories[selectedCategoryIndex]} />
+          <ButtonsList updateSelectedListItem={updateCategory} categories={categories} selected={selectedCategory} headerText="Accessorize your Alpaca" />
+          <ButtonsList updateSelectedListItem={updateOption} categories={alpaca[selectedCategory]} selected={selectedOptions[selectedCategory]} headerText={selectedCategory} />
         </div>
 
       </div>
