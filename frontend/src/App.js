@@ -17,10 +17,15 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [selectedOptions, setSelectedOptions] = useState(initSelectedOptions);
+  const [save, setSave] = useState(false);
 
   function updateSelectedOptions(updatedOption) {
     const updated = { ...selectedOptions, [selectedCategory]: updatedOption };
     setSelectedOptions(updated);
+  }
+
+  function resetSaveApp() {
+    setSave(false);
   }
 
   function updateCategory(newCategory) {
@@ -32,7 +37,7 @@ function App() {
   }
 
   function downloadImage() {
-    alert('Download image');
+    setSave(true);
   }
 
   function selectRandom() {
@@ -49,7 +54,7 @@ function App() {
       <Header />
       <div className="content">
         <div>
-          <Preview selectedOptions={selectedOptions} categories={categories} />
+          <Preview selectedOptions={selectedOptions} categories={categories} save={save} resetSave={resetSaveApp} />
           <div className="command-buttons">
             <ActionButton performAction={selectRandom} caption="random" iconClass="fas fa-random" />
             <ActionButton performAction={downloadImage} caption="download" iconClass="far fa-save" />

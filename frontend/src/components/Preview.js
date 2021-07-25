@@ -3,11 +3,27 @@ import React, { useRef, useEffect } from 'react';
 // import ImagePart from './ImagePart';
 
 function Preview(props) {
-  const { selectedOptions, categories } = props;
+  const {
+    selectedOptions, categories, save, resetSave,
+  } = props;
 
   const canvasRef = useRef(null);
 
   let readyImages;
+
+  function downloadImage() {
+    if (save) {
+      const img = canvasRef.current.toDataURL();
+      const link = document.createElement('a');
+      link.href = img;
+      link.download = 'alpaca.png';
+      link.click();
+      resetSave();
+    }
+  }
+  useEffect(() => {
+    downloadImage();
+  }, [save]);
 
   function addImage(img) {
     return new Promise((resolve, reject) => {
@@ -25,7 +41,6 @@ function Preview(props) {
 
   async function addToCanvas(folder, filename) {
     const src = `/alpaca/${folder}/${filename}.png`;
-    console.log(canvasRef);
     const img = new Image();
     img.src = src;
     readyImages.push(img);
